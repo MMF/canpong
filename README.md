@@ -1,5 +1,7 @@
-# CanPong
+# CanPong Game
 CanPong - Canvas Ping-Pong Game
+
+A multiplayer Ping-Pong game using HTML5 Canvas API and Web Sockets. The player can use Keyboard, Mouse or GamePad Controllers to play the game.
 
 ## Features
 * HTML5 Canvas API
