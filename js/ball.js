@@ -18,7 +18,7 @@ function Ball() {
     this.y = 0;
 
     // movement
-    this.MAX_SPEED = 1;
+    this.MAX_SPEED = 10;
     this.ACCELERATION = 0.2;
     this.velocity_x = 1;
     this.velocity_y = 1;
