@@ -1,4 +1,4 @@
-# canpong
+# CanPong
 CanPong - Canvas Ping-Pong Game
 
 ## Features
