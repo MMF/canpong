@@ -7,6 +7,9 @@ wall_sound.src = 'audio/click.wav';
 var player_sound = new Audio();
 player_sound.src = 'audio/click2.wav';
 
+var score_sound = new Audio();
+score_sound.src = 'audio/clapping.mp3';
+
 // class ball
 function Ball() {
     // size
@@ -18,7 +21,7 @@ function Ball() {
     this.y = 0;
 
     // movement
-    this.MAX_SPEED = 10;
+    this.MAX_SPEED = 5;
     this.ACCELERATION = 0.2;
     this.velocity_x = 1;
     this.velocity_y = 1;
@@ -49,12 +52,27 @@ Ball.prototype.collidesWithWall = function(wall) {
     }
 
     else if (wall.dir == "top" && ball.y < (wall.y + wall.h)) {
+        if ((this.x + this.width/2) >= W/2 - board.goal_wdith/2 &&
+            (this.x + this.width/2) <= W/2 + board.goal_wdith/2 ) {
+
+            score_sound.play();
+            player_1.score++;
+        }
+
         this.moving_up = false;
         this.moving_down = true;
         wall_sound.play();
     }
 
     else if (wall.dir == "bottom" && wall.y < (this.y + this.height)) {
+        // check if collided with the goal
+        if ((this.x + this.width/2) >= W/2 - board.goal_wdith/2 &&
+            (this.x + this.width/2) <= W/2 + board.goal_wdith/2 ) {
+
+            score_sound.play();
+            player_2.score++;
+        }
+
         this.moving_down = false;
         this.moving_up = true;
         wall_sound.play();

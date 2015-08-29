@@ -14,6 +14,9 @@ function Player() {
     this.x = 0;
     this.y = 0;
 
+    // score
+    this.score = 0;
+
     // movements
     this.is_using_mouse = false;
     this.is_moving_right = false;
