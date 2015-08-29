@@ -69,6 +69,8 @@ var board = {
         h: H - 30
     },
 
+    goal_wdith: 300,
+
     draw: function() {
         ctx.clearRect(this.x, this.y, this.w, this.h);
 
@@ -119,18 +121,18 @@ var board = {
 
         // Top Goal
         ctx.beginPath();
-        ctx.moveTo(W/2 - 150, 15);
-        ctx.lineTo(W/2 - 150, 100);
-        ctx.lineTo(W/2 + 150, 100);
-        ctx.lineTo(W/2 + 150, 15);
+        ctx.moveTo(W/2 - this.goal_wdith/2, 15);
+        ctx.lineTo(W/2 - this.goal_wdith/2, 100);
+        ctx.lineTo(W/2 + this.goal_wdith/2, 100);
+        ctx.lineTo(W/2 + this.goal_wdith/2, 15);
         ctx.stroke();
 
         // bottom Goal
         ctx.beginPath();
-        ctx.moveTo(W/2 - 150, H-15);
-        ctx.lineTo(W/2 - 150, H-100);
-        ctx.lineTo(W/2 + 150, H-100);
-        ctx.lineTo(W/2 + 150, H-15);
+        ctx.moveTo(W/2 - this.goal_wdith/2, H-15);
+        ctx.lineTo(W/2 - this.goal_wdith/2, H-100);
+        ctx.lineTo(W/2 + this.goal_wdith/2, H-100);
+        ctx.lineTo(W/2 + this.goal_wdith/2, H-15);
         ctx.stroke();
 
         // half-circle on Top Goal
@@ -162,10 +164,21 @@ players.push(player_1)
 
 // player 2
 var player_2 = new Player();
-player_2.setPosition(W/2 - player_2.width /2, 20);
+player_2.setPosition(W/2 - player_2.width/2, 20);
 player_2.pos = "top";
 player_2.is_using_mouse = true;
 players.push(player_2);
+
+var score = {};
+score.draw = function(context) {
+    context.font = "20px serif";
+    context.fillText("Player 1", (W/8) - 15, (3 * H / 4) - 50)
+    context.fillText("Player 2", (W/8) - 15, (H / 4) - 50)
+
+    context.font = "50px digital_font";
+    context.fillText(player_1.score, W/8, 3 * H/4);
+    context.fillText(player_2.score, W/8, H/4);
+}
 
 // update [positions & collision detection]
 function update() {
@@ -178,12 +191,14 @@ function update() {
     }
 
     // v.basic AI - move player_2 automatically
+    /*
     if (ball.moving_up) {
         player_2.x = ball.x - player_2.width/2 + ball.width/2;
 
         player_2.collidesWithWall(board.left_wall);
         player_2.collidesWithWall(board.right_wall);
     }
+    */
 }
 
 // draw player
@@ -199,6 +214,9 @@ function draw() {
     for (i in players) {
         players[i].draw(ctx)
     }
+
+    // score
+    score.draw(ctx);
 
     requestAnimFrame(draw)
 }
