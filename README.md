@@ -11,7 +11,7 @@ A multiplayer Ping-Pong game using HTML5 Canvas API and Web Sockets. The player 
 ![alt tag](https://raw.githubusercontent.com/mmf/canpong/master/img/screenshot.png)
 
 ## upcoming features
-* Score System
+* [done] Players Score
 * Multiplayer using Web Sockets
 * Obstacles in the Playground
 * Play with Computer (More Intelligence is coming)
